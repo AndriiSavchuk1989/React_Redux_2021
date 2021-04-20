@@ -12,19 +12,19 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         count: state.count + 1,
-        action: "increment"
+        action: action.type
       };
     case "DECREMENT":
       return {
         ...state,
         count: state.count - 1,
-        action: "decrement"
+        action: action.type
       };
     case "RESET":
       return {
         ...state,
         count: 0,
-        action: "reset"
+        action: action.type
       };
     default:
       return state;
