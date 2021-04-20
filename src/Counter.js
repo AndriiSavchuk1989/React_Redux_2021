@@ -19,6 +19,7 @@ class Counter extends React.Component {
   };
 
   render() {
+    console.log("PROPS", this.props);
     return (
       <div>
         <h2>Counter</h2>
@@ -33,7 +34,11 @@ class Counter extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({ count: state.count });
+const mapStateToProps = ({ count, prop1, action }) => ({
+  count: count,
+  additionalProp: prop1,
+  action: action
+});
 
 const mapDispatchToProps = {
   increment,
