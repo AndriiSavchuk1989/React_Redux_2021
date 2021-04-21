@@ -11,18 +11,19 @@ function reducer(state = initialState, action) {
     case "INCREMENT":
       return {
         ...state,
-        count: state.count + 1,
+        count: ++state.count,
         action: action.type
       };
     case "DECREMENT":
       return {
         ...state,
-        count: state.count - 1,
+        count: --state.count,
         action: action.type
       };
     case "RESET":
       return {
         ...state,
+        prop1: state.count,
         count: 0,
         action: action.type
       };
