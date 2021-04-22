@@ -4,8 +4,8 @@ const initialState = {
   action: ""
 };
 
-function reducer(state = initialState, action) {
-  console.log("reducer", state, action);
+function count(state = initialState, action) {
+  console.log("count", state, action);
 
   switch (action.type) {
     case "INCREMENT":
@@ -32,4 +32,4 @@ function reducer(state = initialState, action) {
   }
 }
 
-export default reducer;
+export default count;
