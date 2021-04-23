@@ -1,8 +1,8 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import Counter from "./Counter";
-import store from "./store";
+import Counter from "./components/Counter";
+import store from "./store/store";
 
 const rootElement = document.getElementById("root");
 

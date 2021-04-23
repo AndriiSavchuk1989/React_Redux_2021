@@ -1,6 +1,6 @@
-import "./styles.css";
+import "../styles.css";
 import React from "react";
-import { increment, decrement, reset } from "./actions";
+import { increment, decrement, reset } from "../actions/actions";
 import { connect } from "react-redux";
 
 class Counter extends React.Component {
