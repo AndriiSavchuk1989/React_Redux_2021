@@ -3,7 +3,7 @@ const initialState = {
 };
 
 function emptyReducer(state = initialState, action) {
-  console.log("count", state, action);
+  console.log(" emptyReducer count", state, action);
 
   switch (action.type) {
     default:
