@@ -13,6 +13,8 @@ class Counter extends React.Component {
   constructor(props) {
     super(props);
     this.state = { count: 0, action: "", note: "" };
+    this.myRef = React.createRef();
+    console.log("props = ", props);
   }
 
   componentDidMount() {
@@ -36,15 +38,42 @@ class Counter extends React.Component {
   };
 
   handleInputChange = (event) => {
-    this.setState({ note: event.target.value });
+    const value = event.target.value;
+    if (value.length) {
+      this.setState({ note: value });
+    }
   };
 
   handleAddNote = () => {
-    console.log("notes = ", this.props.notes);
-    this.props.addNote(this.state.note);
+    if (this.state.note.length) {
+      this.props.addNote(this.state.note);
+      this.setState({ note: "" });
+      this.myRef.current.value = "";
+    }
+  };
+
+  createEditorButtons = () => {
+    return (
+      <span>
+        <button>edit</button>
+        <button>x</button>
+      </span>
+    );
+  };
+
+  createList = (items) => {
+    const list = items.map((item) => (
+      <li key={item}>
+        {item}
+        {this.createEditorButtons()}
+      </li>
+    ));
+    return <ul>{list}</ul>;
   };
 
   render() {
+    const notesLength = this.props.notes.length;
+    const notes = this.props.notes;
     return (
       <div>
         <div>
@@ -59,9 +88,14 @@ class Counter extends React.Component {
         </div>
         <div>
           <h2> Todo </h2>
-          <input type="text" onChange={this.handleInputChange} />
+          <input
+            type="text"
+            onChange={this.handleInputChange}
+            ref={this.myRef}
+          />
           <button onClick={this.handleAddNote}>add note</button>
-          <span>Notes - {this.props.notes.length}</span>
+          <p>Notes - {notesLength}</p>
+          {notesLength > 0 && this.createList(notes)}
         </div>
       </div>
     );
@@ -71,13 +105,14 @@ class Counter extends React.Component {
 const mapStateToProps = ({
   count: { count, prop1, action },
   emptyReducer,
-  note: { notes }
+  note: { notes, quantity }
 }) => ({
   count: count,
   additionalProp: prop1,
   action: action,
   empty: emptyReducer.defaultProp,
-  notes: notes
+  notes: notes,
+  notesLength: quantity
 });
 
 const mapDispatchToProps = {

@@ -1,5 +1,6 @@
 const initialState = {
-  notes: []
+  notes: [],
+  quantity: 0
 };
 
 function note(state = initialState, action) {
@@ -9,7 +10,8 @@ function note(state = initialState, action) {
     case "ADD_NOTE":
       return {
         ...state,
-        notes: [...state.notes, action.payload]
+        notes: [...state.notes, action.payload],
+        quantity: state.notes.length + 1
       };
     default:
       return state;
